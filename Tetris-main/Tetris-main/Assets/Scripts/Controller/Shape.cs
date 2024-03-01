@@ -5,14 +5,14 @@ using UnityEngine.UI;
 
 public class Shape : MonoBehaviour
 {
-    private Controller controller;
+    public Controller controller;
     public float dropTimer = 0.5f;
     public bool isPause = false;
-    private GameManger gameManger;
+    public GameManger gameManger;
 
     private Button[] buttons;
 
-    private bool isSpeed = false;
+    public bool isSpeed = false;
     private Transform pivot;
 
 
@@ -39,7 +39,7 @@ public class Shape : MonoBehaviour
         this.gameManger = gameManger;
     }
 
-    public void Fall()
+    public virtual void Fall()
     {
         Vector2 pos = transform.position;
         pos.y -= 1;
@@ -80,7 +80,7 @@ public class Shape : MonoBehaviour
     {
         if (isPause)
         {
-            Debug.Log("ssss");
+            Debug.Log("This is Player");
             return;
         }
             

@@ -82,7 +82,7 @@ public class Model : MonoBehaviour
                     float y = j;
                     float result = x + y * 0.01f;
                     Debug.Log(Player[i][Player[i].Count - 1]);
-                    Debug.Log(x + y);
+                    Debug.Log(result);
                     bool PlayerIsWin=true;
                     foreach(float p in Player[i])
                     {
@@ -227,17 +227,38 @@ public class Model : MonoBehaviour
     }
     public bool IsValidMapPosition(Transform t)
     {
-        foreach(Transform child in t)
+        if(t.tag=="Player")
         {
-            if (child.tag != "Block") continue;
-            Vector2 pos = child.position.Round();
-            if (IsInsiadeMap(pos) == false) return false;
-            if (map[(int)pos.x,(int)pos.y] != null){
-                return false;
+            foreach (Transform child in t)
+            {
+                if (child.tag != "Block") continue;
+                Vector2 pos = child.position.Round();
+                if (IsInsiadeMap(pos) == false) return false;
+                if (map[(int)pos.x, (int)pos.y] != null)
+                {
+                    return false;
 
+                }
             }
+            return true;
+
         }
-        return true;
+        else
+        {
+            foreach (Transform child in t)
+            {
+                if (child.tag != "Block") continue;
+                Vector2 pos = child.position.Round();
+                if (IsInsiadeMapAi(pos) == false) return false;
+                if (map[(int)pos.x, (int)pos.y] != null)
+                {
+                    return false;
+
+                }
+            }
+            return true;
+        }
+
     }
     public bool PlaceShape(Transform t)
     {
@@ -278,7 +299,7 @@ public class Model : MonoBehaviour
     }
     public bool IsRowFall(int row)
     {
-        for(int i = 0; i < maxColumns; i++)
+        for (int i = 0; i < maxColumns-Ai[0].Count; i++)
         {
             if (map[i,row] == null)
                 return false;
@@ -287,7 +308,7 @@ public class Model : MonoBehaviour
     }
     public void DeleteRow(int row)
     {
-        for (int i = 0; i < maxColumns; i++)
+        for (int i = 0; i < maxColumns - Ai[0].Count; i++)
         {
             Destroy(map[i, row].gameObject);
             map[i, row] = null;
@@ -298,7 +319,7 @@ public class Model : MonoBehaviour
     {
         for(int i = row; i < 23; i++)
         {
-            for(int j = 0; j < maxColumns; j++)
+            for(int j = 0; j < maxColumns- Ai[0].Count; j++)
             {
                 if (map[j, i] != null)
                 {
@@ -312,8 +333,41 @@ public class Model : MonoBehaviour
 
     public bool IsInsiadeMap(Vector2 pos)
     {
+        int[] centerJudgePos = {23,22,21,20,19,18,17,16,15};
+        bool posIsInJudge = false;
+        foreach (int p in centerJudgePos)
+        {
+            if (pos.y == p)
+            {
+                posIsInJudge = true;
 
-        return pos.x >= 0 && pos.y >= 0 && pos.x < maxColumns;
+            }                
+        }
+        if (posIsInJudge == true)
+        {
+            return pos.x >= 0 && pos.y >= 0 && pos.x < maxColumns - Ai[0].Count;
+        }
+        else
+            return pos.x >= 0 && pos.y >= 0 && pos.x < maxColumns;
+    }
+    public bool IsInsiadeMapAi(Vector2 pos)
+    {
+        int[] centerJudgePos = { 23, 22, 21, 20, 19, 18, 17, 16, 15 };
+        bool posIsInJudge = false;
+        foreach (int p in centerJudgePos)
+        {
+            if (pos.y == p)
+            {
+                posIsInJudge = true;
+
+            }
+        }
+        if (posIsInJudge == true)
+        {
+            return pos.x < maxColumns && pos.y >= 0 && pos.x >= maxColumns - Ai[0].Count;
+        }
+        else
+            return pos.x < maxColumns && pos.y >= 0 && pos.x >= 0;
     }
 
     // Update is called once per frame

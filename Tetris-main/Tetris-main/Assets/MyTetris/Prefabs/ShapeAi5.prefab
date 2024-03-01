@@ -40,10 +40,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2518806699204094196}
-  - component: {fileID: 1269237916203342457}
+  - component: {fileID: 1604041591892175620}
   m_Layer: 0
-  m_Name: Shape5
-  m_TagString: Player
+  m_Name: ShapeAi5
+  m_TagString: Ai
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -68,7 +68,7 @@ Transform:
   - {fileID: 8219286649520850970}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1269237916203342457
+--- !u!114 &1604041591892175620
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -77,7 +77,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6063662311218232112}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b598413f8a67cea4d9aa45b06192ae87, type: 3}
+  m_Script: {fileID: 11500000, guid: 5a84022b373282f41af0d2e612b0c9d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dropTimer: 0.5

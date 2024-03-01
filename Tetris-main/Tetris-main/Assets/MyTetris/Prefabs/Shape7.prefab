@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -1847417317516586690}
   m_Layer: 0
   m_Name: Shape7
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24,9 +24,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 374088051436911651}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4, y: 23, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4306262162974468556}
   - {fileID: 4281016510463072803}
@@ -34,7 +36,6 @@ Transform:
   - {fileID: 1023060592618590227}
   - {fileID: 2524186295551807241}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &-1847417317516586690
 MonoBehaviour:
@@ -48,6 +49,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b598413f8a67cea4d9aa45b06192ae87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dropTimer: 0.5
+  isPause: 0
+  isSpeed: 0
 --- !u!1 &6109524378850346757
 GameObject:
   m_ObjectHideFlags: 0
@@ -71,18 +75,20 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6109524378850346757}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8350776511210745831}
-  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3657519702561188841
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8350776511210745831}
     m_Modifications:
     - target: {fileID: 5081601033901737512, guid: 60576d57aeba762418482192002af18d,
@@ -166,6 +172,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60576d57aeba762418482192002af18d, type: 3}
 --- !u!4 &7851409990330025110 stripped
 Transform:
@@ -178,6 +187,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8350776511210745831}
     m_Modifications:
     - target: {fileID: 5081601033901737512, guid: 60576d57aeba762418482192002af18d,
@@ -261,6 +271,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60576d57aeba762418482192002af18d, type: 3}
 --- !u!4 &1023060592618590227 stripped
 Transform:
@@ -273,6 +286,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8350776511210745831}
     m_Modifications:
     - target: {fileID: 5081601033901737512, guid: 60576d57aeba762418482192002af18d,
@@ -356,6 +370,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60576d57aeba762418482192002af18d, type: 3}
 --- !u!4 &4281016510463072803 stripped
 Transform:
@@ -368,6 +385,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8350776511210745831}
     m_Modifications:
     - target: {fileID: 5081601033901737512, guid: 60576d57aeba762418482192002af18d,
@@ -451,6 +469,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60576d57aeba762418482192002af18d, type: 3}
 --- !u!4 &4306262162974468556 stripped
 Transform:
