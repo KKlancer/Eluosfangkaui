@@ -92,6 +92,19 @@ public class GameManger : MonoBehaviour
     }
     public void FallDownAi()
     {
+        foreach (Transform child in blockHolder.transform)
+        {
+            if (child.childCount <= 1)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+        if (controller.model.IsGameOver())
+        {
+
+            PauseGame();
+            controller.view.ShowGameOverUI(controller.model.Score);
+        }
         currentShapeAi = null;
     }
     public void ClearCurrentShape()
