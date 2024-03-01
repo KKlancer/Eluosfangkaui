@@ -13,6 +13,13 @@ public class NewBehaviourScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.M))
+        {
+            Model.CenterJudgeMove(1);
+        }
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            Model.CenterJudgeMove(-1);
+        }
     }
 }

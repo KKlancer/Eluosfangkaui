@@ -18,7 +18,7 @@ public class Shape : MonoBehaviour
 
     private void Awake()
     {
-        buttons = GameObject.Find("ControlButtons").GetComponentsInChildren<Button>();
+        buttons = GameObject.Find("ControlButtonsUI").GetComponentsInChildren<Button>();
         buttons[0].onClick.AddListener(OnLeftButtonClick);
         buttons[1].onClick.AddListener(OnRightButtonClick);
         buttons[2].onClick.AddListener(OnSpeedButtonClick);
