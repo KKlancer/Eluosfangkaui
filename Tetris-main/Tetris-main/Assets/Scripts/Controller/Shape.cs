@@ -11,14 +11,20 @@ public class Shape : MonoBehaviour
     public GameManger gameManger;
 
     private Button[] buttons;
+    private HandSlide handSlide;
 
     public bool isSpeed = false;
+    public bool isDownButtom = false;
     private Transform pivot;
 
 
     private void Awake()
     {
         buttons = GameObject.Find("ControlButtonsUI").GetComponentsInChildren<Button>();
+        handSlide = GameObject.Find("SolidScreenUI").GetComponent<HandSlide>();
+        handSlide.RightMove += OnRightButtonClick;
+        handSlide.LiftMove += OnLeftButtonClick;
+        handSlide.DownMove += OnDownButtonClick;
         buttons[0].onClick.AddListener(OnLeftButtonClick);
         buttons[1].onClick.AddListener(OnRightButtonClick);
         buttons[2].onClick.AddListener(OnSpeedButtonClick);
@@ -80,7 +86,6 @@ public class Shape : MonoBehaviour
     {
         if (isPause)
         {
-            Debug.Log("This is Player");
             return;
         }
             
@@ -144,6 +149,29 @@ public class Shape : MonoBehaviour
     {
         if (isPause) return;
         isSpeed = true;
+    }
+    public void OnDownButtonClick(int x)
+    {
+        if (isPause) return;
+
+        Vector2 pos = transform.position;
+        pos.y -= x;
+        transform.position = pos;
+        if (controller.model.IsValidMapPosition(transform) == false)
+        {
+            for (int i=0; i<x;i++)
+            {
+                pos.y += 1;
+                transform.position = pos;
+                if (controller.model.IsValidMapPosition(transform) == true)
+                {
+                    controller.audioManger.PlayMoveAudio();
+                    return;
+                }
+            }
+
+        }
+        controller.audioManger.PlayMoveAudio();
     }
 
     public void OnRotateButtonClick()

@@ -18,7 +18,6 @@ public class ShapeAi : Shape
     {
         if (isPause)
         {
-            Debug.Log("This is Ai");
             return;
         }
 
