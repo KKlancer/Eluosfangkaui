@@ -9,6 +9,7 @@ public class View : MonoBehaviour
     public RectTransform title;
     public RectTransform menuUI;
     public RectTransform gameUI;
+    public RectTransform PlayerUI;
     public RectTransform controlButons;
     public Text score;
     public Text bestScore;
@@ -23,9 +24,29 @@ public class View : MonoBehaviour
     public Text rankBestScore;
     public Text rankNumbersGame;
 
+    public Image x1;
+    public Image x2;
 
 
 
+    public void isSpeedUIChange(int x)
+    {
+        switch (x)
+        {
+            case 0:
+                x1.gameObject.SetActive(false);
+                x2.gameObject.SetActive(false);
+                break;
+            case 1:
+                x1.gameObject.SetActive(true);
+                x2.gameObject.SetActive(false);
+                break;
+            case 2:
+                x2.gameObject.SetActive(true);
+                x1.gameObject.SetActive(false);
+                break;
+        }
+        }
 
     public void ShowRankUI(int score,int bestScore,int numbersGame)
     {
@@ -99,6 +120,8 @@ public class View : MonoBehaviour
         controlButons.DOAnchorPosY(102.2f, 0.5f);
         this.score.text = score.ToString();
         this.bestScore.text = bestScore.ToString();
+        PlayerUI.gameObject.SetActive(true);
+        PlayerUI.DOAnchorPosY(-500.0f,0.5f);
     }
 
 

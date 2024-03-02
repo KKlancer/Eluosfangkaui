@@ -2,15 +2,21 @@ using UnityEngine.EventSystems;
 using UnityEngine;
 using System;
 
-public class HandSlide : MonoBehaviour, IDragHandler,IBeginDragHandler,IEndDragHandler
+public class HandSlide : MonoBehaviour, IDragHandler,IBeginDragHandler,IEndDragHandler,IPointerClickHandler
 {
+    //事件
     public Action RightMove;
     public Action LiftMove;
     public Action<int> DownMove;
-
+    public Action DoubleClick;
+    //
     private Vector2 fingerDownPosition;
     private Vector2 fingerUpPosition;
     private Camera mainCamera;
+    //
+    private Vector2 doubleClickPos;
+    private float doubleClickTime = 0.3f; // 定义双击时间间隔
+    private float lastClickTime = -1f;
 
     public float minSwipeDistance = 200f;
     private void Awake()
@@ -78,5 +84,22 @@ public class HandSlide : MonoBehaviour, IDragHandler,IBeginDragHandler,IEndDragH
     public void OnDrag(PointerEventData eventData)
     {
         return;
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (Time.time - lastClickTime < doubleClickTime&&Vector2.Distance(doubleClickPos,eventData.position)<=1f)
+        {
+            // 在这里执行双击触发的函数
+            DoubleClick?.Invoke();
+            //
+            lastClickTime = 0f;
+        }
+        else
+        {
+            // 单击时记录当前点击时间
+            lastClickTime = Time.time;
+            doubleClickPos = eventData.position;
+        }
     }
 }

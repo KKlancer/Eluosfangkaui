@@ -30,12 +30,16 @@ public class GameManger : MonoBehaviour
     {
         if (currentShape != null)
             currentShape.StartGame();
+        if (currentShapeAi != null)
+            currentShapeAi.StartGame();
         isPause = false;
     }
     public void PauseGame()
     {
         if (currentShape != null)
             currentShape.PauseGame();
+        if (currentShapeAi != null)
+            currentShapeAi.PauseGame();
         isPause = true;
     }
     // Update is called once per frame
@@ -85,6 +89,7 @@ public class GameManger : MonoBehaviour
            
             PauseGame();
             controller.view.ShowGameOverUI(controller.model.Score);
+            ClearCurrentShape();
         } 
           currentShape = null;
 
@@ -104,6 +109,7 @@ public class GameManger : MonoBehaviour
 
             PauseGame();
             controller.view.ShowGameOverUI(controller.model.Score);
+            ClearCurrentShape();
         }
         currentShapeAi = null;
     }

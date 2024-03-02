@@ -6,17 +6,17 @@ using UnityEngine.UI;
 public class Shape : MonoBehaviour
 {
     public Controller controller;
-    public float dropTimer = 0.5f;
+    public float dropTimer = 1f;
     public bool isPause = false;
     public GameManger gameManger;
 
     private Button[] buttons;
     private HandSlide handSlide;
 
-    public bool isSpeed = false;
+    public static int isSpeed = 0;
     public bool isDownButtom = false;
     private Transform pivot;
-
+    //敌方方块
 
     private void Awake()
     {
@@ -25,10 +25,11 @@ public class Shape : MonoBehaviour
         handSlide.RightMove += OnRightButtonClick;
         handSlide.LiftMove += OnLeftButtonClick;
         handSlide.DownMove += OnDownButtonClick;
-        buttons[0].onClick.AddListener(OnLeftButtonClick);
-        buttons[1].onClick.AddListener(OnRightButtonClick);
-        buttons[2].onClick.AddListener(OnSpeedButtonClick);
-        buttons[3].onClick.AddListener(OnRotateButtonClick);
+        handSlide.DoubleClick += OnRotateButtonClick;
+        //buttons[0].onClick.AddListener(OnRotateButtonClick);
+        //buttons[1].onClick.AddListener(OnRightButtonClick);
+        buttons[0].onClick.AddListener(OnSpeedButtonClick);
+        //buttons[3].onClick.AddListener(OnRotateButtonClick);
         pivot = transform.Find("Pivot").transform;
 
     }
@@ -93,11 +94,15 @@ public class Shape : MonoBehaviour
         {
             Fall();
             
-            dropTimer = 0.5f;
+            dropTimer = 1f;
         }
         else
         {
-            if (isSpeed)
+            if (isSpeed==1)
+            {
+                dropTimer -= Time.deltaTime * 8;
+            }
+            if(isSpeed==2)
             {
                 dropTimer -= Time.deltaTime * 16;
             }
@@ -148,7 +153,13 @@ public class Shape : MonoBehaviour
     public void OnSpeedButtonClick()
     {
         if (isPause) return;
-        isSpeed = true;
+        isSpeed += 1;
+        if(isSpeed>2)
+        {
+            isSpeed = 0;
+        }
+        gameManger.controller.view.isSpeedUIChange(isSpeed);
+        
     }
     public void OnDownButtonClick(int x)
     {

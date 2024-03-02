@@ -19,7 +19,8 @@ public class Model : MonoBehaviour
     private int isMute = 0;
     public int IsMute { get { return isMute; } }
     public bool isUpdateScore = false;
-
+    
+    //双方方块碰撞检测
 
 
     private Transform[,] map = new Transform[maxColumns, maxRows];
@@ -331,6 +332,13 @@ public class Model : MonoBehaviour
         }
     }
 
+
+    //loseControll
+    public bool IsLoseControll(Vector2 pos, Vector2[] OtherSide)
+    {
+        return false;
+    }
+    //
     public bool IsInsiadeMap(Vector2 pos)
     {
         int[] centerJudgePos = {23,22,21,20,19,18,17,16,15};
@@ -350,8 +358,10 @@ public class Model : MonoBehaviour
         else
             return pos.x >= 0 && pos.y >= 0 && pos.x < maxColumns;
     }
+
     public bool IsInsiadeMapAi(Vector2 pos)
     {
+
         int[] centerJudgePos = { 23, 22, 21, 20, 19, 18, 17, 16, 15 };
         bool posIsInJudge = false;
         foreach (int p in centerJudgePos)

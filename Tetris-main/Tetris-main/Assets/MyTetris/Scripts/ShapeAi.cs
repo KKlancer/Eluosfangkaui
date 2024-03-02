@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ShapeAi : Shape
 {
+    public static int isSpeedAi = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,11 +26,15 @@ public class ShapeAi : Shape
         {
             Fall();
 
-            dropTimer = 0.5f;
+            dropTimer = 1f;
         }
         else
         {
-            if (isSpeed)
+            if (isSpeedAi == 1)
+            {
+                dropTimer -= Time.deltaTime * 8;
+            }
+            if (isSpeedAi == 2)
             {
                 dropTimer -= Time.deltaTime * 16;
             }

@@ -45,6 +45,9 @@ public class PlayState : FSMState
         controller.audioManger.PlayButtonClickAudio();
         controller.model.RestartGame();
         controller.view.HideGameOverUI();
+        controller.view.isSpeedUIChange(0);
+        Shape.isSpeed = 0;
+        ShapeAi.isSpeedAi = 0;
         controller.view.UpdateScoreUI(controller.model.Score, controller.model.BestScore);
         controller.gameManger.StartGame();
     }
